@@ -1,41 +1,53 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
-import React, {
-  AppRegistry,
-  Component,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
 
-class MakeHabitApp extends Component {
-  render() {
+var React = require('react-native');
+var Calendar = require('react-native-calendar');
+var moment = require('moment');
+
+var {
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View,
+    } = React;
+
+var customDayHeadings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
+var CalendarExample = React.createClass({
+  getInitialState: function() {
+    return {
+      selectedDate: moment().format()
+    };
+  },
+  render: function() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+        <View style={styles.container}>
+          <Calendar
+              ref="calendar"
+              eventDates={['2015-07-03', '2015-07-05', '2015-07-10', '2015-07-15', '2015-07-20', '2015-07-25', '2015-07-28', '2015-07-30']}
+              scrollEnabled={true}
+              showControls={true}
+              dayHeadings={customDayHeadings}
+              titleFormat={'MMMM YYYY'}
+              prevButtonText={'Prev'}
+              nextButtonText={'Next'}
+              onDateSelect={(date) => this.setState({selectedDate: date})}
+              onTouchPrev={() => console.log('Back TOUCH')}
+              onTouchNext={() => console.log('Forward TOUCH')}
+              onSwipePrev={() => console.log('Back SWIPE')}
+              onSwipeNext={() => console.log('Forward SWIPE')}/>
+          <Text>Selected Date: {moment(this.state.selectedDate).format('MMMM DD YYYY')}</Text>
+        </View>
+
     );
   }
-}
+});
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    paddingTop: 20,
+    backgroundColor: '#f7f7f7',
   },
   welcome: {
     fontSize: 20,
@@ -49,4 +61,5 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('MakeHabitApp', () => MakeHabitApp);
+
+AppRegistry.registerComponent('MakeHabitApp', () => CalendarExample);

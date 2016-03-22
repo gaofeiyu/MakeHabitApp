@@ -1,0 +1,27 @@
+{
+  "mission": [
+    {
+      "id": "0",
+      "base_type": "0",
+      "cyc": "d",
+      "count": "100",
+      "tag": "a",
+      "time": "10:00",
+      "day": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "date": "",
+      "remark": "first"
+    }
+  ],
+  "mission_group":[
+    {
+      "id": "0",
+      "mission_arr":[0]
+    }
+  ]
+}
